@@ -1,11 +1,15 @@
-
+import Header from './components/Header'
 import './App.css'
+import Home from './components/Home'
+// import MboaMartLogo from './components/MboaMartLogo'
 
 function App() {
 
   return (
     <>
-    {/* <button class="btn btn-accent">DaisyUI in the house</button> */}
+    {/* <MboaMartLogo /> */}
+    {/* <Header /> */}
+    <Home />
     </>
   )
 }
