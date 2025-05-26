@@ -1,6 +1,6 @@
 import React from "react";
 import MboaMartLogo from "./MboaMartLogo";
-import Button from "./Button";
+import CustomButton from "./CustomButton";
 import { ShoppingCartIcon, Bell } from "lucide-react";
 
 const Header = () => {
@@ -34,8 +34,18 @@ const Header = () => {
 
         {/* Buttons: smaller and stacked on very small, inline on sm+ */}
         <div className="flex flex-col space-y-2 xs:flex-row xs:space-y-0 xs:space-x-3">
-          <Button text="Login" onClick={() => alert("Ding")} variant="ghost" />
-          <Button text="Signup" onClick={() => alert("Ding")} />
+          <CustomButton
+            text="Login"
+            route="/login"
+            as="link"
+            variant="primary"
+          />
+          <CustomButton
+            text="Sign Up"
+            route="/signup"
+            as="link"
+            variant="accent"
+          />
         </div>
       </div>
     </header>

@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button";
+import Button from "./CustomButton";
 
 const HeroBanner = () => {
   return (
@@ -14,7 +14,7 @@ const HeroBanner = () => {
           need to bring your ideas to life. Let's build something amazing
           together.
         </p>
-        <Button text="Get Started"  variant ="secondary"/>
+        <Button text="Get Started"  variant="secondary" />
       </div>
 
       {/* Right Image */}
