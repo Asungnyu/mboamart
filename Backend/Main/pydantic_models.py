@@ -3,11 +3,12 @@ from typing import List, Optional
 from datetime import datetime
 
 class VendorModel(BaseModel):
-    vendor_id: int
+    # vendor_id: int
     vendor_name: Optional[str]
     phone_number: Optional[str]
     email_address: Optional[str]
     username: Optional[str]
+    password: Optional[str]
     data_reg: datetime
 
     class Config:
@@ -27,7 +28,7 @@ class CustomerModel(BaseModel):
 
 
 class ProductModel(BaseModel):
-    p_id: int
+    # p_id: int
     product_name: Optional[str]
     p_description: Optional[str]
     price: Optional[int]
@@ -40,10 +41,15 @@ class ProductModel(BaseModel):
 
 
 class PaymentModel(BaseModel):
-    p_id: int
+    # p_id: int
     product_id: Optional[int]
     vendor_id: Optional[int]
     customer_id: Optional[int]
 
     class Config:
         from_attributes = True
+
+class UserLoginModel(BaseModel):
+    username: str
+    password: str
+

@@ -1,5 +1,3 @@
-
-
 import {Link } from "react-router-dom";
 import { Mail, Lock } from "lucide-react";
 
@@ -58,6 +56,7 @@ function LoginForm() {
             Sign up
           </Link>
         </p>
+
       </div>
     </div>
   );
