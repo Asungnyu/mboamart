@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom"
+// in case of conflict line below imports tes auth from ./api/auth.js
+// frontend devs may edit as needed
+import { login } from "../api/auth";
 function LoginForm() {
     return (
       <div className="flex justify-center items-center bg-[#efefe6] w-full h-screen">
@@ -8,8 +11,6 @@ function LoginForm() {
           </h1>
           <form
             className="mt-4 justify-center items-center"
-            action=""
-            method="GET"
           >
             <label className="input validator flex items-center justify-center gap-2 mt-4">
               <svg
@@ -64,7 +65,8 @@ function LoginForm() {
               At least one uppercase letter
             </p>
             <div className="flex justify-center mt-2">
-              <button className="btn btn-success text-white font-semibold rounded-sm bg-sky-500 px-6 py-1">
+              {/* onclick listener added to call login function from ./api/auth.js */}
+              <button onClick={(e)=>login(e)} className="btn btn-success text-white font-semibold rounded-sm bg-sky-500 px-6 py-1">
                 Login
               </button>
             </div>

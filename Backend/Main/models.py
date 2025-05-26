@@ -8,6 +8,7 @@ class Vendor(Base):
     vendor_name = Column(String(50))
     vendor_id = Column(Integer,primary_key=True, nullable=False, autoincrement=True)
     phone_number = Column(Integer)
+    password = Column(String(20))
     email_address = Column(String(50))
     username = Column(String(20))
     data_reg = Column(DateTime, server_default=func.now())
