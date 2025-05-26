@@ -1,25 +1,21 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-// import LandingPage from "./components/landingpage";
-import Auth from "./components/Auth"
-import './App.css'
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import HomePage from "./pages/HomePage"; // example
 
 
 function App() {
-
   return (
-    <>
-      
-      <Router>
-        <Routes>
-          {/* <Route path="/" element={<LandingPage />} /> */}
-          <Route path="/auth" element={<Navigate to='/auth/login' replace />} />
-          <Route path="/auth/:type" element={<Auth />} />
-        </Routes>
-      </Router>
-      
-    </>
+
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+      </Routes>
+    </Router>
 
   );
 }
-
 export default App;

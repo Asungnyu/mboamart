@@ -1,104 +1,181 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { User, Mail, Lock } from "lucide-react";
+
 function SignupForm() {
-    return (
-      <div className="w-full h-screen justify-center items-center flex bg-[#efefe6]">
-        <div className="card bg-white shadow-lg p-6 w-96 rounded-lg">
-          <h2 className="text-3xl font-bold text-center text-blue-500">
-            Sign Up
-          </h2>
-          <form
-            className="mt-4 justify-center items-center"
-            action=""
-            method="POST"
-          >
-            <label className="input validator flex items-center justify-center gap-2 mt-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-7 stroke-blue-500"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                />
-              </svg>
-              <input
-                type="text"
-                placeholder="Full Name"
-                className="input input-bordered mb-2 border-b-2 border-gray-300 focus:border-blue-500 outline-none w-full "
-                required
-              />
+  const [form, setForm] = useState({
+    fullname: "",
+    email: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({
+    fullname: "",
+    email: "",
+    password: "",
+  });
+
+  // Validation patterns
+  const namePattern = /^[a-zA-Z\s'-]{2,50}$/;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+  // Validate single field
+  const validateField = (name, value) => {
+    let error = "";
+
+    if (name === "fullname") {
+      if (!value) {
+        error = "Full name is required.";
+      } else if (!namePattern.test(value)) {
+        error =
+          "Full name should be 2-50 characters and contain only letters, spaces, apostrophes, or hyphens.";
+      }
+    } else if (name === "email") {
+      if (!value) {
+        error = "Email is required.";
+      } else if (!emailPattern.test(value)) {
+        error = "Please enter a valid email address.";
+      }
+    } else if (name === "password") {
+      if (!value) {
+        error = "Password is required.";
+      } else if (!passwordPattern.test(value)) {
+        error =
+          "Password must be at least 8 characters with uppercase, lowercase, and a number.";
+      }
+    }
+
+    setErrors((prev) => ({ ...prev, [name]: error }));
+  };
+
+  // Handle input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setForm((prev) => ({ ...prev, [name]: value }));
+
+    validateField(name, value);
+  };
+
+  // Handle form submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validate all fields on submit
+    Object.entries(form).forEach(([name, value]) => validateField(name, value));
+
+    // If no errors, proceed (mock submit)
+    const hasErrors = Object.values(errors).some((error) => error !== "");
+    if (!hasErrors) {
+      alert("Form submitted successfully!");
+      // proceed with form submission logic here
+    } else {
+      alert("Please fix the errors before submitting.");
+    }
+  };
+
+  return (
+    <div className="w-full h-screen flex justify-center items-center bg-[#efefe6]">
+      <div className="card bg-white shadow-lg p-8 w-96 rounded-lg">
+        <h2 className="text-3xl font-bold text-center text-[#0B081D] mb-6">
+          Sign Up
+        </h2>
+        <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+          {/* Full Name */}
+          <div>
+            <label className="flex items-center gap-2 text-[#0B081D] font-semibold mb-1">
+              <User className="w-5 h-5" />
+              Full Name
             </label>
-            <label className="input validator flex items-center justify-center gap-2 mt-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-6 stroke-blue-500"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-                />
-              </svg>
-              <input
-                type="email"
-                placeholder="Email"
-                className="input input-bordered w-full mb-2 border-b-2 border-gray-300 focus:border-blue-500 outline-none"
-              />
+            <input
+              type="text"
+              name="fullname"
+              placeholder="Enter your full name"
+              className={`w-full border-b-2 py-2 px-1 outline-none ${
+                errors.fullname
+                  ? "border-red-500 focus:border-red-600"
+                  : "border-gray-300 focus:border-[#0B081D]"
+              }`}
+              value={form.fullname}
+              onChange={handleChange}
+              autoComplete="name"
+              required
+            />
+            {errors.fullname && (
+              <p className="text-red-600 text-sm mt-1">{errors.fullname}</p>
+            )}
+          </div>
+
+          {/* Email */}
+          <div>
+            <label className="flex items-center gap-2 text-[#0B081D] font-semibold mb-1">
+              <Mail className="w-5 h-5" />
+              Email
             </label>
-            <div className="validator-hint hidden text-sm text-blue-400 ml-7 -mt-2">
-              enter a valid email
-            </div>
-            <label className="input validator flex items-center justify-center gap-2 mt-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-6 stroke-blue-500"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z"
-                />
-              </svg>
-              <input
-                type="password"
-                placeholder="Password"
-                className="input input-bordered w-full mb-2 border-b-2 outline-none focus:border-sky-400 border-gray-300 "
-              />
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              className={`w-full border-b-2 py-2 px-1 outline-none ${
+                errors.email
+                  ? "border-red-500 focus:border-red-600"
+                  : "border-gray-300 focus:border-[#0B081D]"
+              }`}
+              value={form.email}
+              onChange={handleChange}
+              autoComplete="email"
+              required
+            />
+            {errors.email && (
+              <p className="text-red-600 text-sm mt-1">{errors.email}</p>
+            )}
+          </div>
+
+          {/* Password */}
+          <div>
+            <label className="flex items-center gap-2 text-[#0B081D] font-semibold mb-1">
+              <Lock className="w-5 h-5" />
+              Password
             </label>
-            <p className="validator-hint text-sm text-gray-500 ml-7 -mt-2 hidden">
-              Must be more than 8 characters, including
-              <br />
-              At least one number <br />
-              At least one lowercase letter <br />
-              At least one uppercase letter
-            </p>
-            <div className="mt-2 flex justify-center items-center">
-              <button className="btn btn-primary px-4 py-1 font-bold bg-sky-500 text-white rounded-sm">
-                Sign up
-              </button>
-            </div>
-          </form>
-          <p className="mt-4 flex justify-center items-center gap-1">
-            Already have an account?
-            <Link to="/auth/login" className="text-blue-500">
-              Login
-            </Link>
-          </p>
-        </div>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter a secure password"
+              className={`w-full border-b-2 py-2 px-1 outline-none ${
+                errors.password
+                  ? "border-red-500 focus:border-red-600"
+                  : "border-gray-300 focus:border-[#0B081D]"
+              }`}
+              value={form.password}
+              onChange={handleChange}
+              autoComplete="new-password"
+              required
+            />
+            {errors.password && (
+              <p className="text-red-600 text-sm mt-1">{errors.password}</p>
+            )}
+          </div>
+
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              className="btn btn-primary px-6 py-2 font-bold bg-[#0B081D] text-white rounded-sm hover:bg-[#000411] transition"
+            >
+              Sign up
+            </button>
+          </div>
+        </form>
+
+        <p className="mt-6 text-center text-[#0B081D]">
+          Already have an account?{" "}
+          <Link to="/auth/login" className="text-[#1E40AF] hover:underline">
+            Login
+          </Link>
+        </p>
       </div>
-    );
+    </div>
+  );
 }
+
 export default SignupForm;
