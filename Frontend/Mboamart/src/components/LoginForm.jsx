@@ -1,5 +1,6 @@
 import {Link } from "react-router-dom";
 import { Mail, Lock } from "lucide-react";
+import { login, get_all_vendors } from "../api/auth";
 
 function LoginForm() {
   return (
@@ -9,7 +10,7 @@ function LoginForm() {
           Login
         </h2>
 
-        <form className="mt-4 flex flex-col gap-4" method="POST">
+        <form className="mt-4 flex flex-col gap-4">
           {/* Email Field */}
           <label className="input validator flex items-center gap-2 mt-2 text-[#313340]">
             <Mail className="w-5 h-5 text-[#365486]" />
@@ -42,8 +43,8 @@ function LoginForm() {
           {/* Submit Button */}
           <div className="mt-4 flex justify-center">
             <button
-              type="submit"
               className="btn font-semibold px-4 py-1 bg-[#365486] text-white rounded-md hover:bg-[#2a3d5c] transition duration-200"
+              onClick={(e)=>get_all_vendors(e)}
             >
               Login
             </button>
