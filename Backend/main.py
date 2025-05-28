@@ -57,7 +57,7 @@ async def create_product(prdct: ProductModel, db = Depends(get_db)):
 @app.get("/all_products",)
 async def get_all_product(db = Depends(get_db)):
     res = db.query(Product).all()
-    return {"data" : res, "vendor" : res.vendor}
+    return  res
 
 @app.get("/all_users")
 async def get_all_users(db = Depends(get_db)):
