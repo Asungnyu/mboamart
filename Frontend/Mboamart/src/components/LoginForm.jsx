@@ -1,5 +1,4 @@
 import {Link } from "react-router-dom";
-import { Mail, Lock } from "lucide-react";
 import { login, get_all_vendors } from "../api/auth";
 import { Mail, Lock, MoveLeft } from "lucide-react";
 
@@ -13,8 +12,7 @@ function LoginForm() {
         <h2 className="text-3xl font-bold text-center text-[#0B081D] mb-6">
           Login
         </h2>
-
-        <form className="mt-4 flex flex-col gap-4">
+        <form className="mt-4 flex flex-col gap-4" method="POST">
           {/* Email Field */}
           <label className="input validator flex items-center gap-2 mt-2 text-[#313340]">
             <Mail className="w-5 h-5 text-[#365486]" />
@@ -28,7 +26,6 @@ function LoginForm() {
             pattern="^[\w\-.]+@([\w-]+\.)+[\w-]{2,4}$"
             title="Please enter a valid email address"
           />
-        <form className="mt-4 flex flex-col gap-4" method="POST">
           <div>
             {/* Email Field */}
             <label className="input validator flex items-center gap-2 mt-2 text-[#0B081D]">
@@ -71,7 +68,6 @@ function LoginForm() {
           {/* Submit Button */}
           <div className="mt-4 flex justify-center">
             <button
-              className="btn font-semibold px-4 py-1 bg-[#365486] text-white rounded-md hover:bg-[#2a3d5c] transition duration-200"
               onClick={(e)=>get_all_vendors(e)}
               type="submit"
               className="btn btn-primary font-bold px-6 py-1 bg-[#0B081D] text-white rounded-md hover:bg-[#000411] transition"
