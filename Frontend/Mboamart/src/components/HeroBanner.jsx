@@ -14,7 +14,12 @@ const HeroBanner = () => {
           need to bring your ideas to life. Let's build something amazing
           together.
         </p>
-        <Button text="Get Started"  variant="secondary" />
+        <Button
+          route="/getstarted"
+          text="Get Started"
+          variant="secondary"
+          as="option"
+        />
       </div>
 
       {/* Right Image */}

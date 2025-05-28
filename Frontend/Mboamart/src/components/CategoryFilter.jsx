@@ -6,7 +6,11 @@ const mockData = [
     category: "Men",
     url: "https://source.unsplash.com/400x300/?nature",
   },
-  { id: 2, category: "Women", url: "https://source.unsplash.com/400x300/?city" },
+  {
+    id: 2,
+    category: "Women",
+    url: "https://source.unsplash.com/400x300/?city",
+  },
   {
     id: 3,
     category: "Kids",
@@ -32,7 +36,7 @@ const mockData = [
     category: "Deco",
     url: "https://source.unsplash.com/400x300/?building",
   },
-  
+
   {
     id: 8,
     category: "Food",
