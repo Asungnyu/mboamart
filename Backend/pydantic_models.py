@@ -9,7 +9,7 @@ class VendorModel(BaseModel):
     email_address: Optional[str]
     username: Optional[str]
     password: Optional[str]
-    data_reg: datetime
+    
 
     class Config:
         from_attributes = True
@@ -21,7 +21,7 @@ class CustomerModel(BaseModel):
     phone_number: Optional[str]
     email_address: Optional[str]
     username: Optional[str]
-    data_reg: datetime
+  
 
     class Config:
         from_attributes = True
@@ -33,7 +33,6 @@ class ProductModel(BaseModel):
     p_description: Optional[str]
     price: Optional[int]
     img_link: Optional[str]
-    data_posted: datetime
     vendor_id: Optional[int]
 
     class Config:
