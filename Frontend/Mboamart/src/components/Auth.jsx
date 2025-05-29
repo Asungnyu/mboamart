@@ -5,10 +5,9 @@ import SignupForm from "./SignupForm";
 function Auth() {
   const { type } = useParams();
 
-  // Redirect to login if no type is provided
-  if (!type) {
-    return <Navigate to="/auth/login" replace />;
-  }
+  // if (!type) {
+  //   return <Navigate to="/auth/login" replace />;
+  // }
 
   return (
     <div className="flex flex-col items-center justify-center bg-gray-100">

@@ -20,12 +20,28 @@ const CustomButton = ({
   variant = "default",
   as = "button", // either 'button' or 'link'
 }) => {
-  const classes = `flex items-center gap-2 px-4 py-2 rounded-xl transition duration-200 text-sm font-medium ${variants[variant]}`;
+  const classes = `flex items-center text-center gap-2 px-4 py-2 rounded-xl transition duration-200 text-sm font-medium ${variants[variant]}`;
+  const optionclass = `px-4 py-2 rounded-xl items-center ${variants[variant]}`;
+  const choiceclass = `items-center justify-center text-center font-semibold font-serif rounded-2xl shadow-lg text-[25px] py-4 ${variants[variant]}`;
 
   if (as === "link" && route) {
     return (
       <Link to={route} className={classes}>
         {Icon && <Icon className="w-4 h-4" />}
+        {text}
+      </Link>
+    );
+  }
+  if (as === "option" && route) {
+    return (
+      <Link to={route} className={optionclass}>
+        {text}
+      </Link>
+    );
+  }
+  if (as === "choice" && route) {
+    return (
+      <Link to={route} className={choiceclass}>
         {text}
       </Link>
     );

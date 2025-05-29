@@ -1,6 +1,6 @@
 import React from "react";
-import MboaMartLogo from "./MboaMartLogo";
-import CustomButton from "./CustomButton";
+import MboaMartLogo from "../common/MboaMartLogo";
+import CustomButton from "../components/CustomButton";
 import { ShoppingCartIcon, Bell } from "lucide-react";
 
 const Header = () => {

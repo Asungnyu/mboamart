@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { User, Mail, Lock } from "lucide-react";
+import { User, Mail, Lock, MoveLeft } from "lucide-react";
 
 function SignupForm() {
   const [form, setForm] = useState({
@@ -77,6 +77,9 @@ function SignupForm() {
 
   return (
     <div className="w-full h-screen flex justify-center items-center bg-[#efefe6]">
+      <Link to="/">
+        <MoveLeft className="absolute top-5 left-4 hover:shadow-lg hover:bg-white transition duration-500 " />
+      </Link>
       <div className="card bg-white shadow-lg p-8 w-96 rounded-lg">
         <h2 className="text-3xl font-bold text-center text-[#0B081D] mb-6">
           Sign Up
@@ -84,7 +87,7 @@ function SignupForm() {
         <form className="space-y-6" onSubmit={handleSubmit} noValidate>
           {/* Full Name */}
           <div>
-            <label className="flex items-center gap-2 text-[#0B081D] font-semibold mb-1">
+            <label className="flex items-center gap-2 text-[#0B081D] font-semibold">
               <User className="w-5 h-5" />
               Full Name
             </label>
@@ -92,7 +95,7 @@ function SignupForm() {
               type="text"
               name="fullname"
               placeholder="Enter your full name"
-              className={`w-full border-b-2 py-2 px-1 outline-none ${
+              className={`w-full border-b-2 py-1 px-1 outline-none ${
                 errors.fullname
                   ? "border-red-500 focus:border-red-600"
                   : "border-gray-300 focus:border-[#0B081D]"
@@ -109,7 +112,7 @@ function SignupForm() {
 
           {/* Email */}
           <div>
-            <label className="flex items-center gap-2 text-[#0B081D] font-semibold mb-1">
+            <label className="flex items-center gap-2 text-[#0B081D] font-semibold">
               <Mail className="w-5 h-5" />
               Email
             </label>
@@ -117,7 +120,7 @@ function SignupForm() {
               type="email"
               name="email"
               placeholder="Enter your email"
-              className={`w-full border-b-2 py-2 px-1 outline-none ${
+              className={`w-full border-b-2 py-1 px-1 outline-none ${
                 errors.email
                   ? "border-red-500 focus:border-red-600"
                   : "border-gray-300 focus:border-[#0B081D]"
@@ -134,7 +137,7 @@ function SignupForm() {
 
           {/* Password */}
           <div>
-            <label className="flex items-center gap-2 text-[#0B081D] font-semibold mb-1">
+            <label className="flex items-center gap-2 text-[#0B081D] font-semibold">
               <Lock className="w-5 h-5" />
               Password
             </label>
@@ -142,7 +145,7 @@ function SignupForm() {
               type="password"
               name="password"
               placeholder="Enter a secure password"
-              className={`w-full border-b-2 py-2 px-1 outline-none ${
+              className={`w-full border-b-2 py-1 px-1 outline-none ${
                 errors.password
                   ? "border-red-500 focus:border-red-600"
                   : "border-gray-300 focus:border-[#0B081D]"
@@ -160,16 +163,16 @@ function SignupForm() {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="btn btn-primary px-6 py-2 font-bold bg-[#0B081D] text-white rounded-sm hover:bg-[#000411] transition"
+              className="btn btn-primary px-6 py-1 font-bold bg-[#0B081D] text-white rounded-sm hover:bg-[#000411] transition"
             >
               Sign up
             </button>
           </div>
         </form>
 
-        <p className="mt-6 text-center text-[#0B081D]">
-          Already have an account?{" "}
-          <Link to="/auth/login" className="text-[#1E40AF] hover:underline">
+        <p className="mt-4 text-center text-[#0B081D]">
+          Already have an account?
+          <Link to="/login" className="text-[#1E40AF] hover:underline ml-1">
             Login
           </Link>
         </p>
