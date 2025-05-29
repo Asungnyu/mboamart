@@ -33,8 +33,8 @@ class ProductModel(BaseModel):
     p_description: Optional[str]
     price: Optional[int]
     img_link: Optional[str]
-    data_posted: datetime
-    vendor_id: Optional[int]
+    # data_posted: datetime
+    # vendor_id: Optional[int]
 
     class Config:
         from_attributes = True
